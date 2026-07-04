@@ -695,13 +695,13 @@
 
       <div class="hero-gallery reveal">
         <figure>
-          <img src="images/002.jpg" alt="Gold marquise drop earrings with green cabochon stones" />
+          <img src="images/featured/002.jpg" alt="Gold marquise drop earrings with green cabochon stones" />
         </figure>
         <figure>
-          <img src="images/001.jpg" alt="Gold floral jewelry details on a taupe surface" />
+          <img src="images/featured/001.jpg" alt="Gold floral jewelry details on a taupe surface" />
         </figure>
         <figure>
-          <img src="images/016.jpg" alt="Gold wire loop with dried botanicals" />
+          <img src="images/featured/016.jpg" alt="Gold wire loop with dried botanicals" />
         </figure>
       </div>
     </section>
@@ -728,7 +728,7 @@
         <div class="featured-grid">
           <article class="card reveal">
             <div class="card-media">
-              <img src="images/002.jpg" alt="Green stone marquise earrings" loading="lazy" />
+              <img src="images/featured/002.jpg" alt="Green stone marquise earrings" loading="lazy" />
             </div>
             <div class="card-body">
               <h3>Marquise Drops</h3>
@@ -738,7 +738,7 @@
 
           <article class="card reveal">
             <div class="card-media">
-              <img src="images/011.jpg" alt="Hammered gold arm cuff with leaf motif" loading="lazy" />
+              <img src="images/featured/011.jpg" alt="Hammered gold arm cuff with leaf motif" loading="lazy" />
             </div>
             <div class="card-body">
               <h3>Leaf Cuff</h3>
@@ -748,7 +748,7 @@
 
           <article class="card reveal">
             <div class="card-media">
-              <img src="images/001.jpg" alt="Gold floral jewelry cluster" loading="lazy" />
+              <img src="images/featured/001.jpg" alt="Gold floral jewelry cluster" loading="lazy" />
             </div>
             <div class="card-body">
               <h3>Bloom Cluster</h3>
@@ -763,13 +763,13 @@
       <div class="about">
         <div class="about-visual reveal">
           <figure>
-            <img src="images/012.jpg" alt="Signature jewelry piece from SparklebySalika" loading="lazy" />
+            <img src="images/featured/012.jpg" alt="Signature jewelry piece from SparklebySalika" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/014.jpg" alt="Close-up of handcrafted metalwork" loading="lazy" />
+            <img src="images/featured/014.jpg" alt="Close-up of handcrafted metalwork" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/010.jpg" alt="Artisan jewelry detail" loading="lazy" />
+            <img src="images/featured/010.jpg" alt="Artisan jewelry detail" loading="lazy" />
           </figure>
         </div>
 
@@ -810,17 +810,17 @@
         </div>
 
         <div class="masonry">
-          <figure class="reveal"><img src="images/003.jpg" alt="Jewelry detail 03" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/004.jpg" alt="Jewelry detail 04" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/005.jpg" alt="Jewelry detail 05" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/006.jpg" alt="Jewelry detail 06" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/007.jpg" alt="Jewelry detail 07" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/008.jpg" alt="Jewelry detail 08" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/009.jpg" alt="Jewelry detail 09" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/013.jpg" alt="Jewelry detail 13" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/015.jpg" alt="Jewelry detail 15" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/016.jpg" alt="Gold wire with botanicals" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/017.jpg" alt="Jewelry detail 17" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/003.jpg" alt="Jewelry detail 03" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/004.jpg" alt="Jewelry detail 04" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/005.jpg" alt="Jewelry detail 05" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/006.jpg" alt="Jewelry detail 06" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/007.jpg" alt="Jewelry detail 07" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/008.jpg" alt="Jewelry detail 08" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/009.jpg" alt="Jewelry detail 09" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/013.jpg" alt="Jewelry detail 13" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/015.jpg" alt="Jewelry detail 15" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/016.jpg" alt="Gold wire with botanicals" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/017.jpg" alt="Jewelry detail 17" loading="lazy" /></figure>
         </div>
       </div>
     </section>
@@ -867,7 +867,7 @@
         `images/${cat.slug}/003.jpg`,
         `images/${cat.slug}/004.jpg`,
         `images/${cat.slug}/005.jpg`,
-        `images/${String((i % 17) + 1).padStart(3, "0")}.jpg`,
+        `images/featured/${String((i % 17) + 1).padStart(3, '0')}.jpg`,
       ];
       const img = document.createElement("img");
       img.alt = cat.label;

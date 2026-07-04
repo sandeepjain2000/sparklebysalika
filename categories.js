@@ -1,5 +1,6 @@
 // Instagram highlight categories for SparklebySalika
 window.CATEGORIES = [
+  { label: "Featured", slug: "featured", match: "Featured", count: 17 },
   { label: "2026", slug: "2026", match: "2026" },
   { label: "Limited Edition", slug: "limited-edition", match: "Limited Edition" },
   { label: "Quotes", slug: "quotes", match: "Qoutes" },
