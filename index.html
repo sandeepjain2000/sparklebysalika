@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SparklebySalika — Handcrafted Jewelry</title>
+  <meta name="description" content="Handcrafted gold-toned jewelry by SparklebySalika. Delicate forms, natural stones, made to shimmer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #f6f0e8;
+      --cream-deep: #ebe2d4;
+      --ink: #1c1814;
+      --ink-soft: #4a423a;
+      --gold: #b8924a;
+      --gold-light: #d4b57a;
+      --stone: #2f3d34;
+      --white: #fffcf8;
+      --shadow: 0 24px 60px rgba(28, 24, 20, 0.12);
+      --radius: 2px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Outfit", system-ui, sans-serif;
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      z-index: 1000;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    /* Nav */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(246, 240, 232, 0.82);
+      border-bottom: 1px solid rgba(28, 24, 20, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.25rem;
+    }
+
+    .logo {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--ink-soft);
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.3rem;
+      width: 100%;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1.25rem;
+      padding: 6rem 0 3rem;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 1rem 2rem 0;
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(3.2rem, 7vw, 5.8rem);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--stone);
+    }
+
+    .hero-lead {
+      max-width: 28rem;
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      margin-bottom: 2.25rem;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 1.6rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: 1px solid var(--ink);
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .btn-primary:hover {
+      background: var(--stone);
+      border-color: var(--stone);
+    }
+
+    .btn-ghost:hover {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .hero-gallery {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-rows: 1.2fr 0.8fr;
+      gap: 0.85rem;
+      min-height: 70vh;
+    }
+
+    .hero-gallery figure {
+      position: relative;
+      overflow: hidden;
+      background: var(--cream-deep);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-gallery figure:first-child {
+      grid-row: 1 / -1;
+    }
+
+    .hero-gallery img {
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .hero-gallery figure:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Sections */
+    section {
+      padding: 5.5rem 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid rgba(28, 24, 20, 0.1);
+    }
+
+    .section-head h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .section-head p {
+      max-width: 22rem;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      text-align: right;
+    }
+
+    /* Featured */
+    .featured {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--white);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card-media {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--cream-deep);
+    }
+
+    .card-media img {
+      transition: transform 0.7s ease;
+    }
+
+    .card:hover .card-media img {
+      transform: scale(1.06);
+    }
+
+    .card-body {
+      padding: 1.15rem 1.2rem 1.35rem;
+    }
+
+    .card-body h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-body p {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* About */
+    .about {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+
+    .about-visual figure {
+      overflow: hidden;
+      background: var(--cream-deep);
+      box-shadow: var(--shadow);
+    }
+
+    .about-visual figure:first-child {
+      grid-row: span 2;
+      aspect-ratio: 3 / 4;
+    }
+
+    .about-visual figure:nth-child(2),
+    .about-visual figure:nth-child(3) {
+      aspect-ratio: 1;
+    }
+
+    .about-copy .eyebrow {
+      margin-bottom: 0.9rem;
+    }
+
+    .about-copy h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-copy p {
+      color: var(--ink-soft);
+      margin-bottom: 1rem;
+      max-width: 34rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(28, 24, 20, 0.1);
+    }
+
+    .stats strong {
+      display: block;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .stats span {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* Gallery */
+    .gallery {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .gallery .section-head {
+      border-bottom-color: rgba(246, 240, 232, 0.12);
+    }
+
+    .gallery .section-head p {
+      color: rgba(246, 240, 232, 0.65);
+    }
+
+    .masonry {
+      columns: 3;
+      column-gap: 1rem;
+    }
+
+    .masonry figure {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      position: relative;
+      background: #2a241e;
+    }
+
+    .masonry figure img {
+      transition: transform 0.7s ease, opacity 0.35s ease;
+      opacity: 0.92;
+    }
+
+    .masonry figure:hover img {
+      transform: scale(1.04);
+      opacity: 1;
+    }
+
+    .masonry figure:nth-child(3n + 1) img {
+      aspect-ratio: 4 / 5;
+    }
+
+    .masonry figure:nth-child(3n + 2) img {
+      aspect-ratio: 1;
+    }
+
+    .masonry figure:nth-child(3n) img {
+      aspect-ratio: 3 / 4;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 6rem 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(184, 146, 74, 0.16), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(47, 61, 52, 0.12), transparent 35%),
+        var(--cream);
+    }
+
+    .cta h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 400;
+      margin-bottom: 0.9rem;
+    }
+
+    .cta p {
+      color: var(--ink-soft);
+      max-width: 28rem;
+      margin: 0 auto 2rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(28, 24, 20, 0.08);
+      padding: 1.75rem 0 2rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+    }
+
+    .footer-inner a {
+      color: var(--ink);
+      border-bottom: 1px solid var(--gold-light);
+    }
+
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Instagram-style highlights */
+    .highlights-section {
+      padding: 1.5rem 0 3rem;
+    }
+
+    .highlights-shell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .highlights-track {
+      display: flex;
+      gap: 1.1rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      padding: 0.5rem 0.25rem 1rem;
+      scrollbar-width: none;
+    }
+
+    .highlights-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .highlight-item {
+      flex: 0 0 auto;
+      width: 5.5rem;
+      text-align: center;
+      scroll-snap-align: start;
+      color: var(--ink);
+    }
+
+    .highlight-ring {
+      width: 5.1rem;
+      height: 5.1rem;
+      margin: 0 auto 0.45rem;
+      border-radius: 50%;
+      padding: 3px;
+      border: 1px solid rgba(28, 24, 20, 0.18);
+      background: var(--white);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .highlight-item:hover .highlight-ring {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .highlight-ring img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--cream-deep);
+    }
+
+    .highlight-item span {
+      display: block;
+      font-size: 0.72rem;
+      line-height: 1.2;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 5.5rem;
+      margin-inline: auto;
+    }
+
+    .hl-nav {
+      flex: 0 0 auto;
+      width: 2rem;
+      height: 2rem;
+      border: none;
+      border-radius: 50%;
+      background: #4a4a4a;
+      color: #fff;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-size: 0.9rem;
+      line-height: 1;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .hl-nav:hover {
+      background: var(--ink);
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .about,
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 5.5rem;
+        min-height: auto;
+      }
+
+      .hero-gallery {
+        min-height: 55vh;
+        grid-template-rows: 1.4fr 0.8fr;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .section-head p {
+        text-align: left;
+      }
+
+      .masonry {
+        columns: 2;
+      }
+
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.68rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-links {
+        display: none;
+      }
+
+      .masonry {
+        columns: 1;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+      }
+
+      .hero-gallery figure:first-child {
+        grid-row: auto;
+        min-height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#top">Sparkleby<span>Salika</span></a>
+      <ul class="nav-links">
+        <li><a href="#highlights">Highlights</a></li>
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="wrap hero">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Handcrafted jewelry</p>
+        <h1>Quiet gold.<br /><em>Lasting sparkle.</em></h1>
+        <p class="hero-lead">
+          Delicate forms, warm metals, and natural stones — jewelry made to feel personal,
+          wearable every day, and luminous in every light.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#collection">View collection</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/sparklebysalika/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </div>
+
+      <div class="hero-gallery reveal">
+        <figure>
+          <img src="images/002.jpg" alt="Gold marquise drop earrings with green cabochon stones" />
+        </figure>
+        <figure>
+          <img src="images/001.jpg" alt="Gold floral jewelry details on a taupe surface" />
+        </figure>
+        <figure>
+          <img src="images/016.jpg" alt="Gold wire loop with dried botanicals" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="wrap highlights-section" id="highlights">
+      <div class="section-head reveal">
+        <h2>Highlights</h2>
+        <p>Browse each collection — metal work, beadwork, resin, events, and more.</p>
+      </div>
+      <div class="highlights-shell reveal">
+        <button class="hl-nav" id="hlPrev" type="button" aria-label="Previous categories">‹</button>
+        <div class="highlights-track" id="highlightsTrack"></div>
+        <button class="hl-nav" id="hlNext" type="button" aria-label="Next categories">›</button>
+      </div>
+    </section>
+
+    <section class="featured" id="collection">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Featured pieces</h2>
+          <p>A selection of handcrafted forms — from sculptural drops to soft floral motifs.</p>
+        </div>
+
+        <div class="featured-grid">
+          <article class="card reveal">
+            <div class="card-media">
+              <img src="images/002.jpg" alt="Green stone marquise earrings" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <h3>Marquise Drops</h3>
+              <p>Gold &amp; green stone</p>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-media">
+              <img src="images/011.jpg" alt="Hammered gold arm cuff with leaf motif" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <h3>Leaf Cuff</h3>
+              <p>Hammered gold tone</p>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-media">
+              <img src="images/001.jpg" alt="Gold floral jewelry cluster" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <h3>Bloom Cluster</h3>
+              <p>Floral gold work</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="about">
+      <div class="about">
+        <div class="about-visual reveal">
+          <figure>
+            <img src="images/012.jpg" alt="Signature jewelry piece from SparklebySalika" loading="lazy" />
+          </figure>
+          <figure>
+            <img src="images/014.jpg" alt="Close-up of handcrafted metalwork" loading="lazy" />
+          </figure>
+          <figure>
+            <img src="images/010.jpg" alt="Artisan jewelry detail" loading="lazy" />
+          </figure>
+        </div>
+
+        <div class="about-copy reveal">
+          <p class="eyebrow">The atelier</p>
+          <h2>Made slowly,<br />worn brightly.</h2>
+          <p>
+            SparklebySalika is a handcrafted jewelry practice rooted in warm metals,
+            organic silhouettes, and pieces that feel intimate rather than loud.
+          </p>
+          <p>
+            Each design is shaped with care — from fine wire forms and floral motifs to
+            stone-set drops that catch light in quiet, unexpected ways.
+          </p>
+          <div class="stats">
+            <div>
+              <strong>Hand</strong>
+              <span>Made pieces</span>
+            </div>
+            <div>
+              <strong>Gold</strong>
+              <span>Warm tones</span>
+            </div>
+            <div>
+              <strong>One</strong>
+              <span>Of a kind feel</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Gallery</h2>
+          <p>A closer look at textures, stones, and the details that make each piece shine.</p>
+        </div>
+
+        <div class="masonry">
+          <figure class="reveal"><img src="images/003.jpg" alt="Jewelry detail 03" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/004.jpg" alt="Jewelry detail 04" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/005.jpg" alt="Jewelry detail 05" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/006.jpg" alt="Jewelry detail 06" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/007.jpg" alt="Jewelry detail 07" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/008.jpg" alt="Jewelry detail 08" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/009.jpg" alt="Jewelry detail 09" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/013.jpg" alt="Jewelry detail 13" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/015.jpg" alt="Jewelry detail 15" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/016.jpg" alt="Gold wire with botanicals" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/017.jpg" alt="Jewelry detail 17" loading="lazy" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="wrap reveal">
+        <p class="eyebrow">Connect</p>
+        <h2>Find the next sparkle.</h2>
+        <p>
+          Follow the studio on Instagram for new drops, custom pieces, and behind-the-scenes
+          making moments.
+        </p>
+        <div class="btn-row" style="justify-content: center;">
+          <a class="btn btn-primary" href="https://www.instagram.com/sparklebysalika/" target="_blank" rel="noopener noreferrer">@sparklebysalika</a>
+          <a class="btn btn-ghost" href="#collection">Back to collection</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <p>© <span id="year"></span> SparklebySalika</p>
+      <p>
+        <a href="https://www.instagram.com/sparklebysalika/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="categories.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const track = document.getElementById("highlightsTrack");
+    (window.CATEGORIES || []).forEach((cat) => {
+      const a = document.createElement("a");
+      a.className = "highlight-item";
+      a.href = `gallery.html?cat=${encodeURIComponent(cat.slug)}`;
+      a.title = cat.label;
+      a.innerHTML = `
+        <div class="highlight-ring">
+          <img src="images/${cat.slug}/001.jpg" alt="${cat.label}"
+               onerror="this.onerror=null;this.src='images/001.jpg';" loading="lazy" />
+        </div>
+        <span>${cat.label}</span>
+      `;
+      track.appendChild(a);
+    });
+
+    const scrollBy = (dir) => {
+      track.scrollBy({ left: dir * 280, behavior: "smooth" });
+    };
+    document.getElementById("hlPrev").addEventListener("click", () => scrollBy(-1));
+    document.getElementById("hlNext").addEventListener("click", () => scrollBy(1));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    document.querySelectorAll(".reveal").forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 6) * 60}ms`;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
