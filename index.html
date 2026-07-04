@@ -7,19 +7,27 @@
   <meta name="description" content="Handcrafted gold-toned jewelry by SparklebySalika. Delicate forms, natural stones, made to shimmer." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --cream: #f6f0e8;
-      --cream-deep: #ebe2d4;
-      --ink: #1c1814;
-      --ink-soft: #4a423a;
-      --gold: #b8924a;
-      --gold-light: #d4b57a;
-      --stone: #2f3d34;
+      /* Maison palette: Tiffany air, Cartier ink, Tanishq gold, boutique ivory */
+      --ivory: #faf8f5;
+      --cream: #f7f3ec;
+      --cream-deep: #efe8dc;
+      --ink: #121212;
+      --ink-soft: #5c564e;
+      --gold: #b8956c;
+      --gold-light: #d4bc96;
+      --gold-deep: #8c6d45;
+      --stone: #2a3330;
+      --tiffany-mist: #e8f4f2;
       --white: #fffcf8;
-      --shadow: 0 24px 60px rgba(28, 24, 20, 0.12);
-      --radius: 2px;
+      --shadow: 0 18px 50px rgba(18, 18, 18, 0.08);
+      --shadow-soft: 0 8px 28px rgba(18, 18, 18, 0.06);
+      --radius: 0;
+      --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      --font-body: "Inter", system-ui, -apple-system, sans-serif;
+      --font-ui: "Manrope", system-ui, -apple-system, sans-serif;
     }
 
     * {
@@ -33,11 +41,12 @@
     }
 
     body {
-      font-family: "Outfit", system-ui, sans-serif;
+      font-family: var(--font-body);
       font-weight: 300;
       color: var(--ink);
-      background: var(--cream);
-      line-height: 1.6;
+      background: var(--ivory);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
       overflow-x: hidden;
     }
 
@@ -46,16 +55,58 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.035;
+      opacity: 0.028;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       z-index: 1000;
     }
 
     img {
       display: block;
+      max-width: 100%;
+    }
+
+    /*
+      Circular photo mask (CSS only — image files stay rectangular).
+      Square frame (padding-bottom: 100%) + overflow:hidden + border-radius:50%
+      + absolutely positioned image. Same pattern used for profile avatars.
+    */
+    .oval,
+    .hero-gallery figure,
+    .card-media,
+    .about-visual figure,
+    .masonry figure,
+    .highlight-ring {
+      position: relative;
+      display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 100%;
+      height: 0 !important;
+      padding: 0 0 100% 0 !important; /* perfect square */
+      border-radius: 50% !important;
+      overflow: hidden !important;
+      background: var(--cream-deep);
+      align-self: center;
+      justify-self: center;
+      flex-shrink: 0;
+    }
+
+    .oval img,
+    .hero-gallery figure img,
+    .card-media img,
+    .about-visual figure img,
+    .masonry figure img,
+    .highlight-ring img {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      border-radius: 50% !important;
     }
 
     a {
@@ -64,49 +115,52 @@
     }
 
     .wrap {
-      width: min(1180px, calc(100% - 2.5rem));
+      width: min(1120px, calc(100% - 3rem));
       margin-inline: auto;
     }
 
-    /* Nav */
+    /* Nav — Tiffany-like air, Cartier restraint */
     header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 50;
-      backdrop-filter: blur(14px);
-      background: rgba(246, 240, 232, 0.82);
-      border-bottom: 1px solid rgba(28, 24, 20, 0.06);
+      backdrop-filter: blur(16px);
+      background: rgba(250, 248, 245, 0.9);
+      border-bottom: 1px solid rgba(184, 149, 108, 0.18);
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 4.25rem;
+      height: 4.75rem;
     }
 
     .logo {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 1.35rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
     }
 
     .logo span {
-      color: var(--gold);
+      color: var(--gold-deep);
+      font-weight: 400;
+      letter-spacing: 0.22em;
     }
 
     .nav-links {
       display: flex;
-      gap: 1.75rem;
+      gap: 2rem;
       list-style: none;
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      font-weight: 400;
+      font-weight: 500;
     }
 
     .nav-links a {
@@ -119,13 +173,13 @@
       content: "";
       position: absolute;
       left: 0;
-      bottom: -0.3rem;
+      bottom: -0.35rem;
       width: 100%;
       height: 1px;
       background: var(--gold);
       transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
+      transform-origin: center;
+      transition: transform 0.35s ease;
     }
 
     .nav-links a:hover {
@@ -154,32 +208,46 @@
     }
 
     .eyebrow {
-      font-size: 0.72rem;
-      letter-spacing: 0.28em;
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.25rem;
+      color: var(--gold-deep);
+      margin-bottom: 1.4rem;
+    }
+
+    .eyebrow::after {
+      content: "";
+      display: block;
+      width: 2rem;
+      height: 1px;
+      margin-top: 0.85rem;
+      background: linear-gradient(90deg, var(--gold), transparent);
     }
 
     .hero h1 {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(3.2rem, 7vw, 5.8rem);
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 7vw, 5.6rem);
       font-weight: 400;
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
+      line-height: 1.02;
+      letter-spacing: 0.01em;
+      margin-bottom: 1.6rem;
     }
 
     .hero h1 em {
       font-style: italic;
-      color: var(--stone);
+      font-weight: 400;
+      color: var(--gold-deep);
     }
 
     .hero-lead {
-      max-width: 28rem;
-      font-size: 1.05rem;
+      max-width: 26rem;
+      font-size: 0.98rem;
+      font-weight: 300;
       color: var(--ink-soft);
-      margin-bottom: 2.25rem;
+      margin-bottom: 2.4rem;
+      line-height: 1.8;
     }
 
     .btn-row {
@@ -192,46 +260,60 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.95rem 1.6rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
+      min-width: 10.5rem;
+      padding: 1rem 1.75rem;
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       border: 1px solid var(--ink);
-      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .btn-primary {
       background: var(--ink);
-      color: var(--cream);
+      color: var(--ivory);
+      border-color: var(--ink);
     }
 
     .btn-primary:hover {
-      background: var(--stone);
-      border-color: var(--stone);
+      background: var(--gold-deep);
+      border-color: var(--gold-deep);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border-color: rgba(184, 149, 108, 0.55);
     }
 
     .btn-ghost:hover {
       background: var(--ink);
-      color: var(--cream);
+      color: var(--ivory);
+      border-color: var(--ink);
     }
 
     .hero-gallery {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      grid-template-rows: 1.2fr 0.8fr;
-      gap: 0.85rem;
-      min-height: 70vh;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      min-height: auto;
     }
 
     .hero-gallery figure {
       position: relative;
-      overflow: hidden;
+      width: min(220px, 42vw);
       background: var(--cream-deep);
       box-shadow: var(--shadow);
+      border: 1px solid rgba(184, 149, 108, 0.22);
     }
 
     .hero-gallery figure:first-child {
-      grid-row: 1 / -1;
+      width: min(300px, 52vw);
     }
 
     .hero-gallery img {
@@ -244,7 +326,7 @@
 
     /* Sections */
     section {
-      padding: 5.5rem 0;
+      padding: 6rem 0;
     }
 
     .section-head {
@@ -252,28 +334,32 @@
       align-items: end;
       justify-content: space-between;
       gap: 1.5rem;
-      margin-bottom: 2.5rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid rgba(28, 24, 20, 0.1);
+      margin-bottom: 2.75rem;
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid rgba(184, 149, 108, 0.28);
     }
 
     .section-head h2 {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
       font-weight: 400;
-      line-height: 1;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
     }
 
     .section-head p {
       max-width: 22rem;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      font-weight: 300;
       color: var(--ink-soft);
       text-align: right;
+      line-height: 1.7;
     }
 
-    /* Featured */
+    /* Featured — boutique collection wall */
     .featured {
-      background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+      background:
+        linear-gradient(180deg, var(--cream) 0%, var(--tiffany-mist) 48%, var(--cream-deep) 100%);
     }
 
     .featured-grid {
@@ -283,10 +369,10 @@
     }
 
     .card {
-      background: var(--white);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+      background: transparent;
+      overflow: visible;
       transition: transform 0.35s ease;
+      text-align: center;
     }
 
     .card:hover {
@@ -294,9 +380,11 @@
     }
 
     .card-media {
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
+      width: min(100%, 260px);
+      margin-inline: auto;
       background: var(--cream-deep);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(184, 149, 108, 0.2);
     }
 
     .card-media img {
@@ -308,21 +396,24 @@
     }
 
     .card-body {
-      padding: 1.15rem 1.2rem 1.35rem;
+      padding: 1.15rem 0.5rem 0.25rem;
     }
 
     .card-body h3 {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: 1.45rem;
-      font-weight: 500;
-      margin-bottom: 0.25rem;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.03em;
     }
 
     .card-body p {
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--ink-soft);
+      color: var(--gold-deep);
     }
 
     /* About */
@@ -334,25 +425,21 @@
     }
 
     .about-visual {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
       gap: 0.85rem;
     }
 
     .about-visual figure {
-      overflow: hidden;
+      width: min(160px, 42%);
       background: var(--cream-deep);
       box-shadow: var(--shadow);
     }
 
     .about-visual figure:first-child {
-      grid-row: span 2;
-      aspect-ratio: 3 / 4;
-    }
-
-    .about-visual figure:nth-child(2),
-    .about-visual figure:nth-child(3) {
-      aspect-ratio: 1;
+      width: min(220px, 55%);
     }
 
     .about-copy .eyebrow {
@@ -360,7 +447,7 @@
     }
 
     .about-copy h2 {
-      font-family: "Cormorant Garamond", Georgia, serif;
+      font-family: var(--font-display);
       font-size: clamp(2.4rem, 4vw, 3.6rem);
       font-weight: 400;
       line-height: 1.05;
@@ -377,58 +464,66 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(28, 24, 20, 0.1);
+      margin-top: 2.25rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(184, 149, 108, 0.28);
     }
 
     .stats strong {
       display: block;
-      font-family: "Cormorant Garamond", Georgia, serif;
+      font-family: var(--font-display);
       font-size: 2rem;
-      font-weight: 500;
-      color: var(--gold);
+      font-weight: 400;
+      color: var(--gold-deep);
       line-height: 1;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
     }
 
     .stats span {
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
+      font-family: var(--font-ui);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--ink-soft);
     }
 
-    /* Gallery */
+    /* Gallery — Cartier night-window drama */
     .gallery {
-      background: var(--ink);
-      color: var(--cream);
+      background: linear-gradient(180deg, #0d0d0d 0%, #161412 100%);
+      color: var(--ivory);
     }
 
     .gallery .section-head {
-      border-bottom-color: rgba(246, 240, 232, 0.12);
+      border-bottom-color: rgba(184, 149, 108, 0.28);
+    }
+
+    .gallery .section-head h2 {
+      color: var(--ivory);
     }
 
     .gallery .section-head p {
-      color: rgba(246, 240, 232, 0.65);
+      color: rgba(250, 248, 245, 0.62);
     }
 
     .masonry {
       columns: 3;
-      column-gap: 1rem;
+      column-gap: 1.25rem;
     }
 
     .masonry figure {
       break-inside: avoid;
-      margin-bottom: 1rem;
-      overflow: hidden;
+      margin-bottom: 1.25rem;
       position: relative;
-      background: #2a241e;
+      background: #1a1714;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(184, 149, 108, 0.18);
     }
 
     .masonry figure img {
       transition: transform 0.7s ease, opacity 0.35s ease;
-      opacity: 0.92;
+      opacity: 0.94;
     }
 
     .masonry figure:hover img {
@@ -436,45 +531,115 @@
       opacity: 1;
     }
 
-    .masonry figure:nth-child(3n + 1) img {
-      aspect-ratio: 4 / 5;
+    /* Videos */
+    .videos-section {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
     }
 
-    .masonry figure:nth-child(3n + 2) img {
-      aspect-ratio: 1;
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
     }
 
-    .masonry figure:nth-child(3n) img {
-      aspect-ratio: 3 / 4;
+    .video-card {
+      position: relative;
+      width: min(100%, 220px);
+      height: 0 !important;
+      padding: 0 0 100% 0 !important;
+      border-radius: 50% !important;
+      overflow: hidden !important;
+      background: #121212;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(184, 149, 108, 0.28);
+    }
+
+    .video-card video {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      border-radius: 50% !important;
+      background: #1c1814;
+    }
+
+    .video-card:hover video,
+    .video-card:focus-within video {
+      outline: none;
+    }
+
+    /* Background audio control */
+    .audio-toggle {
+      position: fixed;
+      right: 1.1rem;
+      bottom: 1.1rem;
+      z-index: 60;
+      width: 3rem;
+      height: 3rem;
+      border: 1px solid rgba(28, 24, 20, 0.12);
+      border-radius: 50%;
+      background: rgba(255, 252, 248, 0.92);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .audio-toggle[aria-pressed="false"] {
+      opacity: 0.75;
+    }
+
+    .audio-toggle:hover {
+      border-color: var(--gold);
     }
 
     /* CTA */
     .cta {
       text-align: center;
-      padding: 6rem 0;
+      padding: 7rem 0;
       background:
-        radial-gradient(circle at 20% 20%, rgba(184, 146, 74, 0.16), transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(47, 61, 52, 0.12), transparent 35%),
-        var(--cream);
+        radial-gradient(circle at 50% 0%, rgba(232, 244, 242, 0.9), transparent 45%),
+        radial-gradient(circle at 20% 80%, rgba(184, 149, 108, 0.12), transparent 40%),
+        var(--ivory);
+    }
+
+    .cta .eyebrow {
+      display: inline-block;
+    }
+
+    .cta .eyebrow::after {
+      margin-inline: auto;
     }
 
     .cta h2 {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
       font-weight: 400;
-      margin-bottom: 0.9rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
     }
 
     .cta p {
       color: var(--ink-soft);
       max-width: 28rem;
-      margin: 0 auto 2rem;
+      margin: 0 auto 2.25rem;
+      font-weight: 300;
+      line-height: 1.8;
     }
 
     /* Footer */
     footer {
-      border-top: 1px solid rgba(28, 24, 20, 0.08);
-      padding: 1.75rem 0 2rem;
+      border-top: 1px solid rgba(184, 149, 108, 0.22);
+      padding: 1.9rem 0 2.1rem;
+      background: var(--ivory);
     }
 
     .footer-inner {
@@ -483,13 +648,17 @@
       gap: 1rem;
       align-items: center;
       justify-content: space-between;
-      font-size: 0.82rem;
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       color: var(--ink-soft);
     }
 
     .footer-inner a {
       color: var(--ink);
-      border-bottom: 1px solid var(--gold-light);
+      border-bottom: 1px solid var(--gold);
     }
 
     /* Reveal */
@@ -540,42 +709,32 @@
 
     .highlight-ring {
       width: 5.1rem;
-      height: 5.1rem;
+      max-width: 5.1rem;
       margin: 0 auto 0.45rem;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1px solid rgba(28, 24, 20, 0.18);
+      border: 1px solid rgba(184, 149, 108, 0.45);
       background: var(--cream-deep);
-      box-shadow: 0 0 0 3px var(--white);
+      box-shadow: 0 0 0 3px var(--ivory);
       transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-      /* CSS-only circular mask — images stay rectangular files */
-      -webkit-mask-image: radial-gradient(circle, #000 98%, transparent 100%);
-      mask-image: radial-gradient(circle, #000 98%, transparent 100%);
     }
 
     .highlight-item:hover .highlight-ring {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px var(--white), 0 0 0 4px rgba(184, 146, 74, 0.35);
+      border-color: var(--gold-deep);
+      box-shadow: 0 0 0 3px var(--ivory), 0 0 0 4px rgba(184, 149, 108, 0.35);
       transform: translateY(-2px);
     }
 
     .highlight-ring img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 50%;
-      clip-path: circle(50% at 50% 50%);
-      -webkit-clip-path: circle(50% at 50% 50%);
       background: var(--cream-deep);
     }
 
     .highlight-item span {
       display: block;
-      font-size: 0.72rem;
-      line-height: 1.2;
-      color: var(--ink);
+      font-family: var(--font-ui);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      line-height: 1.25;
+      color: var(--ink-soft);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -585,22 +744,24 @@
 
     .hl-nav {
       flex: 0 0 auto;
-      width: 2rem;
-      height: 2rem;
-      border: none;
+      width: 2.1rem;
+      height: 2.1rem;
+      border: 1px solid rgba(184, 149, 108, 0.4);
       border-radius: 50%;
-      background: #4a4a4a;
-      color: #fff;
+      background: var(--ivory);
+      color: var(--ink);
       cursor: pointer;
       display: grid;
       place-items: center;
       font-size: 0.9rem;
       line-height: 1;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      box-shadow: var(--shadow-soft);
     }
 
     .hl-nav:hover {
       background: var(--ink);
+      color: var(--ivory);
+      border-color: var(--ink);
     }
 
     @media (max-width: 900px) {
@@ -613,11 +774,6 @@
       .hero {
         padding-top: 5.5rem;
         min-height: auto;
-      }
-
-      .hero-gallery {
-        min-height: 55vh;
-        grid-template-rows: 1.4fr 0.8fr;
       }
 
       .section-head {
@@ -652,14 +808,9 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-gallery {
-        grid-template-columns: 1fr;
-        grid-template-rows: none;
-      }
-
+      .hero-gallery figure,
       .hero-gallery figure:first-child {
-        grid-row: auto;
-        min-height: 320px;
+        width: min(260px, 70vw);
       }
     }
   </style>
@@ -673,6 +824,7 @@
         <li><a href="#collection">Collection</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#videos">Videos</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -681,15 +833,15 @@
   <main id="top">
     <section class="wrap hero">
       <div class="hero-copy reveal">
-        <p class="eyebrow">Handcrafted jewelry</p>
+        <p class="eyebrow">Maison · Handcrafted</p>
         <h1>Quiet gold.<br /><em>Lasting sparkle.</em></h1>
         <p class="hero-lead">
-          Delicate forms, warm metals, and natural stones — jewelry made to feel personal,
-          wearable every day, and luminous in every light.
+          Timeless forms in warm metal and natural stone — crafted to feel intimate,
+          worn every day, and luminous in every light.
         </p>
         <div class="btn-row">
-          <a class="btn btn-primary" href="#collection">View collection</a>
-          <a class="btn btn-ghost" href="https://www.instagram.com/sparklebysalika/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="btn btn-primary" href="#collection">Explore collection</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/sparklebysalika/" target="_blank" rel="noopener noreferrer">Visit Instagram</a>
         </div>
       </div>
 
@@ -766,10 +918,10 @@
             <img src="images/featured/012.jpg" alt="Signature jewelry piece from SparklebySalika" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/featured/014.jpg" alt="Close-up of handcrafted metalwork" loading="lazy" />
+            <img src="images/featured/001.jpg" alt="Gold floral jewelry details" loading="lazy" />
           </figure>
           <figure>
-            <img src="images/featured/010.jpg" alt="Artisan jewelry detail" loading="lazy" />
+            <img src="images/featured/016.jpg" alt="Gold wire with botanicals" loading="lazy" />
           </figure>
         </div>
 
@@ -777,12 +929,12 @@
           <p class="eyebrow">The atelier</p>
           <h2>Made slowly,<br />worn brightly.</h2>
           <p>
-            SparklebySalika is a handcrafted jewelry practice rooted in warm metals,
+            SparklebySalika is a handcrafted maison rooted in warm metals,
             organic silhouettes, and pieces that feel intimate rather than loud.
           </p>
           <p>
             Each design is shaped with care — from fine wire forms and floral motifs to
-            stone-set drops that catch light in quiet, unexpected ways.
+            stone-set drops that catch light the way crystal catches a room.
           </p>
           <div class="stats">
             <div>
@@ -810,18 +962,22 @@
         </div>
 
         <div class="masonry">
-          <figure class="reveal"><img src="images/featured/003.jpg" alt="Jewelry detail 03" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/featured/004.jpg" alt="Jewelry detail 04" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/featured/005.jpg" alt="Jewelry detail 05" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/featured/006.jpg" alt="Jewelry detail 06" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/featured/007.jpg" alt="Jewelry detail 07" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/featured/008.jpg" alt="Jewelry detail 08" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/featured/009.jpg" alt="Jewelry detail 09" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/featured/013.jpg" alt="Jewelry detail 13" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/featured/015.jpg" alt="Jewelry detail 15" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/001.jpg" alt="Gold floral jewelry details" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/002.jpg" alt="Green stone marquise earrings" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/011.jpg" alt="Hammered gold arm cuff" loading="lazy" /></figure>
+          <figure class="reveal"><img src="images/featured/012.jpg" alt="Gold marquise earrings on stone" loading="lazy" /></figure>
           <figure class="reveal"><img src="images/featured/016.jpg" alt="Gold wire with botanicals" loading="lazy" /></figure>
-          <figure class="reveal"><img src="images/featured/017.jpg" alt="Jewelry detail 17" loading="lazy" /></figure>
         </div>
+      </div>
+    </section>
+
+    <section class="videos-section" id="videos">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Videos</h2>
+          <p>Reels and making moments from the studio — tap a circle to play.</p>
+        </div>
+        <div class="videos-grid" id="videosGrid"></div>
       </div>
     </section>
 
@@ -850,9 +1006,80 @@
     </div>
   </footer>
 
+  <audio id="bgAudio" src="audio/bg.mp3" loop preload="auto"></audio>
+  <button class="audio-toggle" id="audioToggle" type="button" aria-pressed="true" aria-label="Mute background audio" title="Sound">♪</button>
+
   <script src="categories.js"></script>
+  <script src="videos.js"></script>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Background audio — try on load; browsers may require a first click
+    const bgAudio = document.getElementById("bgAudio");
+    const audioToggle = document.getElementById("audioToggle");
+    bgAudio.volume = 0.35;
+    let audioEnabled = true;
+
+    const setAudioUi = (playing) => {
+      audioToggle.setAttribute("aria-pressed", playing ? "true" : "false");
+      audioToggle.textContent = playing ? "♪" : "♩";
+      audioToggle.title = playing ? "Mute sound" : "Play sound";
+      audioToggle.setAttribute("aria-label", playing ? "Mute background audio" : "Play background audio");
+    };
+
+    const tryPlayAudio = () => {
+      if (!audioEnabled) return Promise.resolve();
+      return bgAudio.play().then(() => {
+        setAudioUi(true);
+      }).catch(() => {
+        setAudioUi(false);
+      });
+    };
+
+    tryPlayAudio();
+
+    // If autoplay is blocked, start on first user gesture
+    const unlockAudio = () => {
+      if (!audioEnabled) return;
+      tryPlayAudio().finally(() => {
+        window.removeEventListener("pointerdown", unlockAudio);
+        window.removeEventListener("keydown", unlockAudio);
+      });
+    };
+    window.addEventListener("pointerdown", unlockAudio, { passive: true });
+    window.addEventListener("keydown", unlockAudio);
+
+    audioToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      audioEnabled = !audioEnabled;
+      if (audioEnabled) {
+        tryPlayAudio();
+      } else {
+        bgAudio.pause();
+        setAudioUi(false);
+      }
+    });
+
+    const videosGrid = document.getElementById("videosGrid");
+    (window.VIDEOS || []).forEach((file, i) => {
+      const card = document.createElement("div");
+      card.className = "video-card reveal";
+      const video = document.createElement("video");
+      video.src = `videos/${file}`;
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      video.muted = true;
+      video.setAttribute("aria-label", `SparklebySalika video ${i + 1}`);
+      video.onerror = () => card.remove();
+      video.addEventListener("play", () => {
+        videosGrid.querySelectorAll("video").forEach((other) => {
+          if (other !== video) other.pause();
+        });
+      });
+      card.appendChild(video);
+      videosGrid.appendChild(card);
+    });
 
     const track = document.getElementById("highlightsTrack");
     (window.CATEGORIES || []).forEach((cat, i) => {
@@ -867,7 +1094,7 @@
         `images/${cat.slug}/003.jpg`,
         `images/${cat.slug}/004.jpg`,
         `images/${cat.slug}/005.jpg`,
-        `images/featured/${String((i % 17) + 1).padStart(3, '0')}.jpg`,
+        `images/featured/${["001","002","011","012","016"][i % 5]}.jpg`,
       ];
       const img = document.createElement("img");
       img.alt = cat.label;
