@@ -543,22 +543,31 @@
       height: 5.1rem;
       margin: 0 auto 0.45rem;
       border-radius: 50%;
-      padding: 3px;
+      overflow: hidden;
       border: 1px solid rgba(28, 24, 20, 0.18);
-      background: var(--white);
-      transition: border-color 0.25s ease, transform 0.25s ease;
+      background: var(--cream-deep);
+      box-shadow: 0 0 0 3px var(--white);
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      /* CSS-only circular mask — images stay rectangular files */
+      -webkit-mask-image: radial-gradient(circle, #000 98%, transparent 100%);
+      mask-image: radial-gradient(circle, #000 98%, transparent 100%);
     }
 
     .highlight-item:hover .highlight-ring {
       border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--white), 0 0 0 4px rgba(184, 146, 74, 0.35);
       transform: translateY(-2px);
     }
 
     .highlight-ring img {
       width: 100%;
       height: 100%;
-      border-radius: 50%;
+      display: block;
       object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      clip-path: circle(50% at 50% 50%);
+      -webkit-clip-path: circle(50% at 50% 50%);
       background: var(--cream-deep);
     }
 
