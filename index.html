@@ -66,8 +66,8 @@
     }
 
     /*
-      Wide, short oval mask (CSS only).
-      aspect-ratio keeps frames landscape so they don't create tall white space.
+      Circle mask (CSS only — image files stay rectangular).
+      Perfect circles are simpler and crop more evenly than ovals.
     */
     .oval,
     .hero-gallery figure,
@@ -82,7 +82,7 @@
       max-width: 100%;
       height: auto !important;
       padding: 0 !important;
-      aspect-ratio: 1.85 / 1;
+      aspect-ratio: 1 / 1;
       border-radius: 50% !important;
       overflow: hidden !important;
       background: var(--cream-deep);
@@ -104,7 +104,7 @@
       height: 100% !important;
       margin: 0 !important;
       object-fit: cover !important;
-      object-position: center 28% !important;
+      object-position: center 30% !important;
       border-radius: 50% !important;
     }
 
