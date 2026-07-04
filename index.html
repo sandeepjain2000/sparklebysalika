@@ -66,22 +66,22 @@
     }
 
     /*
-      Circular photo mask (CSS only — image files stay rectangular).
-      Square frame (padding-bottom: 100%) + overflow:hidden + border-radius:50%
-      + absolutely positioned image. Same pattern used for profile avatars.
+      Wide oval mask (CSS only — image files stay rectangular).
+      Wider than tall (~4:3) so faces and jewelry are less cropped.
     */
     .oval,
     .hero-gallery figure,
     .card-media,
     .about-visual figure,
     .masonry figure,
-    .highlight-ring {
+    .highlight-ring,
+    .video-card {
       position: relative;
       display: block;
       width: 100%;
       max-width: 100%;
       height: 0 !important;
-      padding: 0 0 100% 0 !important; /* perfect square */
+      padding: 0 0 72% 0 !important; /* wide oval, not a narrow circle */
       border-radius: 50% !important;
       overflow: hidden !important;
       background: var(--cream-deep);
@@ -95,7 +95,8 @@
     .card-media img,
     .about-visual figure img,
     .masonry figure img,
-    .highlight-ring img {
+    .highlight-ring img,
+    .video-card video {
       position: absolute !important;
       top: 0 !important;
       left: 0 !important;
@@ -105,7 +106,7 @@
       height: 100% !important;
       margin: 0 !important;
       object-fit: cover !important;
-      object-position: center !important;
+      object-position: center 30% !important;
       border-radius: 50% !important;
     }
 
@@ -306,14 +307,14 @@
 
     .hero-gallery figure {
       position: relative;
-      width: min(220px, 42vw);
+      width: min(300px, 46vw);
       background: var(--cream-deep);
       box-shadow: var(--shadow);
       border: 1px solid rgba(184, 149, 108, 0.22);
     }
 
     .hero-gallery figure:first-child {
-      width: min(300px, 52vw);
+      width: min(400px, 58vw);
     }
 
     .hero-gallery img {
@@ -380,7 +381,7 @@
     }
 
     .card-media {
-      width: min(100%, 260px);
+      width: min(100%, 320px);
       margin-inline: auto;
       background: var(--cream-deep);
       box-shadow: var(--shadow);
@@ -433,13 +434,13 @@
     }
 
     .about-visual figure {
-      width: min(160px, 42%);
+      width: min(200px, 46%);
       background: var(--cream-deep);
       box-shadow: var(--shadow);
     }
 
     .about-visual figure:first-child {
-      width: min(220px, 55%);
+      width: min(280px, 58%);
     }
 
     .about-copy .eyebrow {
@@ -538,32 +539,19 @@
 
     .videos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 1.5rem;
       justify-items: center;
     }
 
     .video-card {
-      position: relative;
-      width: min(100%, 220px);
-      height: 0 !important;
-      padding: 0 0 100% 0 !important;
-      border-radius: 50% !important;
-      overflow: hidden !important;
+      width: min(100%, 300px);
       background: #121212;
       box-shadow: var(--shadow);
       border: 1px solid rgba(184, 149, 108, 0.28);
     }
 
     .video-card video {
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      object-position: center !important;
-      border-radius: 50% !important;
       background: #1c1814;
     }
 
@@ -719,15 +707,15 @@
 
     .highlight-item {
       flex: 0 0 auto;
-      width: 5.5rem;
+      width: 6.75rem;
       text-align: center;
       scroll-snap-align: start;
       color: var(--ink);
     }
 
     .highlight-ring {
-      width: 5.1rem;
-      max-width: 5.1rem;
+      width: 6.5rem;
+      max-width: 6.5rem;
       margin: 0 auto 0.45rem;
       border: 1px solid rgba(184, 149, 108, 0.45);
       background: var(--cream-deep);
@@ -756,7 +744,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 5.5rem;
+      max-width: 6.75rem;
       margin-inline: auto;
     }
 
@@ -828,7 +816,7 @@
 
       .hero-gallery figure,
       .hero-gallery figure:first-child {
-        width: min(260px, 70vw);
+        width: min(340px, 88vw);
       }
     }
   </style>
@@ -843,6 +831,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#lookbook">Lookbook</a></li>
+        <li><a href="#videos">Videos</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -1053,6 +1042,16 @@
       </div>
     </section>
 
+    <section class="videos-section" id="videos">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Videos</h2>
+          <p>Reels and making moments from the studio — tap a circle to play.</p>
+        </div>
+        <div class="videos-grid" id="videosGrid"></div>
+      </div>
+    </section>
+
     <section class="cta" id="contact">
       <div class="wrap reveal">
         <p class="eyebrow">The maison</p>
@@ -1095,6 +1094,7 @@
   <button class="audio-toggle" id="audioToggle" type="button" aria-pressed="false" aria-label="Play background audio" title="Sound">♩</button>
 
   <script src="categories.js"></script>
+  <script src="videos.js"></script>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -1143,6 +1143,34 @@
         bgAudio.pause();
         setAudioUi(false);
       }
+    });
+
+    const videosGrid = document.getElementById("videosGrid");
+    (window.VIDEOS || []).forEach((file, i) => {
+      const card = document.createElement("div");
+      card.className = "video-card reveal";
+      const video = document.createElement("video");
+      video.src = `videos/${file}`;
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      video.setAttribute("aria-label", `SparklebySalika video ${i + 1}`);
+      video.onerror = () => card.remove();
+      video.addEventListener("play", () => {
+        bgAudio.pause();
+        setAudioUi(false);
+        videosGrid.querySelectorAll("video").forEach((other) => {
+          if (other !== video) other.pause();
+        });
+      });
+      video.addEventListener("pause", () => {
+        const anyPlaying = [...videosGrid.querySelectorAll("video")].some(
+          (v) => !v.paused && !v.ended
+        );
+        if (!anyPlaying && audioEnabled) tryPlayAudio();
+      });
+      card.appendChild(video);
+      videosGrid.appendChild(card);
     });
 
     const track = document.getElementById("highlightsTrack");
