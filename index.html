@@ -846,18 +846,36 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     const track = document.getElementById("highlightsTrack");
-    (window.CATEGORIES || []).forEach((cat) => {
+    (window.CATEGORIES || []).forEach((cat, i) => {
       const a = document.createElement("a");
       a.className = "highlight-item";
       a.href = `gallery.html?cat=${encodeURIComponent(cat.slug)}`;
       a.title = cat.label;
-      a.innerHTML = `
-        <div class="highlight-ring">
-          <img src="images/${cat.slug}/001.jpg" alt="${cat.label}"
-               onerror="this.onerror=null;this.src='images/001.jpg';" loading="lazy" />
-        </div>
-        <span>${cat.label}</span>
-      `;
+      // Prefer highlight cover; fall back through category shots, then unique root images
+      const fallbacks = [
+        `images/${cat.slug}/cover.jpg`,
+        `images/${cat.slug}/002.jpg`,
+        `images/${cat.slug}/003.jpg`,
+        `images/${cat.slug}/004.jpg`,
+        `images/${cat.slug}/005.jpg`,
+        `images/${String((i % 17) + 1).padStart(3, "0")}.jpg`,
+      ];
+      const img = document.createElement("img");
+      img.alt = cat.label;
+      img.loading = "lazy";
+      let fi = 0;
+      img.src = fallbacks[0];
+      img.onerror = () => {
+        fi += 1;
+        if (fi < fallbacks.length) img.src = fallbacks[fi];
+      };
+      const ring = document.createElement("div");
+      ring.className = "highlight-ring";
+      ring.appendChild(img);
+      const label = document.createElement("span");
+      label.textContent = cat.label;
+      a.appendChild(ring);
+      a.appendChild(label);
       track.appendChild(a);
     });
 
